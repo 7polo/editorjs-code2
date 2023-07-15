@@ -1,23 +1,52 @@
-# CodeTool Tool for Editor.js
+# Code
+Code Tool for Editor.js 2.0. power by codemirror.
 
-## Installation
+![](./assert/demo.png)
 
-Use your package manager to install the package `editorjs-CodeTool`.
+## Feature
++ [x] line number ✌️
++ [x] code folder
++ [ ] theme selector (on-the-way )
++ [ ] language selector (on-the-way)
++ [ ] copy (on-the-way)
+
+## Usage
+
+Add a new Tool to the `tools` property of the Editor.js initial config.
 
 ```
-npm install editorjs-CodeTool
-
-yarn add editorjs-CodeTool
+npm i @7polo/editorjs-code2
 ```
 
-## Development
+```javascript
+var editor = EditorJS({
+  ...
+  tools: {
+    ...
+    code: {
+        class: Code,
+        config: {
+            defaultTheme: 'okaidia',
+            defaultLanguage: 'java'
+        }
+    }
+  }
+});
+```
 
-This tool uses [Vite](https://vitejs.dev/) as builder.
+## Output data
 
-`npm run dev` — run development environment with hot reload
+This Tool returns code.
 
-`npm run build` — build the tool for production to the `dist` folder
+```json
+{
+    "type" : "code",
+    "data" : {
+        "code": "body {\n font-size: 14px;\n line-height: 16px;\n}",
+        "language": "css",
+        "theme": "tomorrow"
+    }
+}
+```
 
-## Links
 
-[Editor.js](https://editorjs.io) • [Create Tool](https://github.com/editor-js/create-tool)
