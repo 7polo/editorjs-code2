@@ -1,0 +1,11 @@
+.editorjs-code2 .cm-content {
+  font-size: 16px;
+}
+
+.editorjs-code2 .cm-focused {
+  outline: none !important;
+}
+
+.editorjs-code2  .cm-line {
+  padding: 2px 2px 2px 6px;
+}
