@@ -9,6 +9,7 @@ Code Tool for Editor.js 2.0. power by codemirror.
 + [ ] theme selector (on-the-way )
 + [ ] language selector (on-the-way)
 + [ ] copy (on-the-way)
++ [x] tab/shift+tab support
 
 ## Usage
 

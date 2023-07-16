@@ -4,7 +4,8 @@ import {CodeEditorContext, CodeToolData} from "../types";
 
 import {EditorView, minimalSetup, } from "codemirror"
 import { EditorState, Compartment } from '@codemirror/state';
-import { lineNumbers } from '@codemirror/view';
+import { lineNumbers, keymap } from '@codemirror/view';
+import {indentWithTab} from "@codemirror/commands"
 import { foldGutter } from '@codemirror/language';
 
 // language support
@@ -49,6 +50,8 @@ export class Editor {
             doc: this.data.code,
             extensions: [
                 minimalSetup,
+
+                keymap.of([indentWithTab]),
 
                 lineNumbers(),
                 foldGutter({

@@ -110,6 +110,21 @@ export default class CodeTool implements BlockTool {
     this.nodes.wrapper.classList.add('editorjs-code2')
     this.nodes.wrapper.classList.add(this.api.styles.block);
     this.editor?.render(this.nodes.wrapper)
+
+    if (!this.readOnly) {
+      // detect keydown on the last item to escape List
+      this.nodes.wrapper.addEventListener('keydown', (event) => {
+        switch (event.key) {
+          case 'Backspace':
+            event.stopPropagation();
+            break;
+          case 'Tab':
+            event.stopPropagation();
+            event.preventDefault();
+            break;
+        }
+      }, false);
+    }
     return this.nodes.wrapper;
   }
 
