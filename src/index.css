@@ -9,3 +9,7 @@
 .editorjs-code2  .cm-line {
   padding: 2px 2px 2px 6px;
 }
+
+.editorjs-code2 .cm-content.readonly {
+  cursor: pointer;
+}

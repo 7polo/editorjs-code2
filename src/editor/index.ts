@@ -79,7 +79,9 @@ export class Editor {
                 })
             ],
             parent: container
-        })
+        });
+
+        setTimeout(()=> this.setReadOnly(this.context.readOnly), 0)
     }
 
     updateData(data:any) {
@@ -95,6 +97,13 @@ export class Editor {
         this.editor?.dispatch({
             effects: this.readonlyComp.reconfigure(EditorState.readOnly.of(readOnly))
         });
+        if (readOnly) {
+            this.editor?.contentDOM.classList.add('readonly')
+            this.editor?.contentDOM.setAttribute('contenteditable', "false")
+        } else {
+            this.editor?.contentDOM.classList.remove('readonly')
+            this.editor?.contentDOM.setAttribute('contenteditable', "true")
+        }
     }
 
     setTheme(theme:string) {
