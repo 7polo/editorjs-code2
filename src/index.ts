@@ -209,7 +209,7 @@ export default class CodeTool implements BlockTool {
    */
   static get toolbox() {
     return {
-      title: 'code',
+      title: 'Code',
       icon: IconBrackets,
     };
   }

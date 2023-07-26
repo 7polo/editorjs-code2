@@ -1,7 +1,7 @@
 {
   "name": "@7polo/editorjs-code2",
   "description": "CodeTool Tool for Editor.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/CodeTool.umd.js",
   "module": "dist/CodeTool.mjs",
   "scripts": {
@@ -23,13 +23,11 @@
     "@codemirror/lang-javascript": "^6.1.9",
     "@codemirror/lang-python": "^6.1.2",
     "@codemirror/lang-vue": "^0.1.2",
+    "@codemirror/lang-json": "^6.0.1",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@uiw/codemirror-theme-darcula": "^4.21.7",
     "@uiw/codemirror-themes-all": "^4.21.7",
     "codemirror": "^6.0.1",
     "lodash.debounce": "^4.0.8"
-  },
-  "dependencies": {
-    "@codemirror/lang-json": "^6.0.1"
   }
 }
