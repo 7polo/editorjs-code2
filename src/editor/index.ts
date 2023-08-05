@@ -61,7 +61,7 @@ export class Editor {
                 EditorView.theme({
                     "&": {maxHeight: "400px"},
                     ".cm-scroller": {overflow: "auto"},
-                    ".cm-content, .cm-gutter": {minHeight: "200px"}
+                    // ".cm-content, .cm-gutter": {minHeight: "200px"}
                 }),
 
                 this.readonlyComp.of(EditorState.readOnly.of(this.context.readOnly)),
