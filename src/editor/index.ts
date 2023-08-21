@@ -59,7 +59,7 @@ export class Editor {
                     // openText: '▼'
                 }),
                 EditorView.theme({
-                    "&": {maxHeight: "400px"},
+                    // "&": {maxHeight: "400px"},
                     ".cm-scroller": {overflow: "auto"},
                     // ".cm-content, .cm-gutter": {minHeight: "200px"}
                 }),

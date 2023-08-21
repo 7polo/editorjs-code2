@@ -1,7 +1,7 @@
 {
   "name": "@7polo/editorjs-code2",
   "description": "CodeTool Tool for Editor.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/CodeTool.umd.js",
   "module": "dist/CodeTool.mjs",
   "scripts": {
