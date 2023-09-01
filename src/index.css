@@ -13,3 +13,7 @@
 .editorjs-code2 .cm-content.readonly {
   cursor: pointer;
 }
+
+.editorjs-code2 .ͼ1 .cm-gutter {
+  padding-top: 2px;
+}
