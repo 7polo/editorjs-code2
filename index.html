@@ -20,7 +20,7 @@
 
     const editor = new EditorJS({
       tools: {
-        CodeTool: {
+        code: {
           class: CodeTool,
           // inlineToolbar: ['marker', 'link'],
           // shortcut: 'CMD+SHIFT+H',
@@ -31,10 +31,19 @@
       data: {
         blocks: [
           {
-            type: 'CodeTool',
+            "tunes": {},
+            "data": {
+              "code": "1212",
+              "language": "java",
+              "theme": "tomorrow"
+            },
+            type: "code"
+          },
+          {
+            type: 'code',
             data: {
               code: 'import { javascript } from \'@codemirror/lang-javascript\'\n' +
-                      'import { EditorView } from \'@codemirror/view\'\n' +
+                      'import { Edito1rView } from \'@codemirror/view\'\n' +
                       'import { basicSetup } from \'codemirror\'\n' +
                       'const initialText = \'console.log("hello, world")\'\n' +
                       'const targetElement = document.querySelector(\'#editor\')!\n' +

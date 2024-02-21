@@ -14,6 +14,8 @@ import LANGUAGES_MAPPING from './languages'
 // theme support
 import * as themes from '@uiw/codemirror-themes-all';
 
+const DEFAULT_THEME = 'okaidia'
+
 export class Editor {
 
     private readonly data:CodeToolData;
@@ -46,6 +48,11 @@ export class Editor {
             e.preventDefault();
         });
 
+        let themeName = this.data.theme || this.context.config.defaultTheme;
+        if (this.getAllThemes().indexOf(themeName) == -1) {
+            themeName = this.context.config.defaultTheme || DEFAULT_THEME
+        }
+
         this.editor = new EditorView({
             doc: this.data.code,
             extensions: [
@@ -67,7 +74,7 @@ export class Editor {
                 this.readonlyComp.of(EditorState.readOnly.of(this.context.readOnly)),
 
                 // @ts-ignore
-                this.themeComp.of(themes[this.data.theme || this.context.config.defaultTheme || 'abcdef']),
+                this.themeComp.of(themes[themeName]),
 
                 // @ts-ignore
                 this.languageComp.of(LANGUAGES_MAPPING[this.data.language || this.context.config.defaultLanguage || 'java']),
