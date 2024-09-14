@@ -11,7 +11,7 @@ import { IconBrackets} from '@codexteam/icons';
 /**
  * Import types
  */
-import { CodeToolData, CodeToolConfig } from './types';
+import {CodeToolData, CodeToolConfig, CLASS_NAME} from './types';
 import { API, BlockAPI, BlockTool } from '@editorjs/editorjs';
 import {Editor} from "./editor";
 
@@ -107,7 +107,7 @@ export default class CodeTool implements BlockTool {
    */
   render() {
     this.nodes.wrapper = document.createElement('div');
-    this.nodes.wrapper.classList.add('editorjs-code2')
+    this.nodes.wrapper.classList.add(CLASS_NAME)
     this.nodes.wrapper.classList.add(this.api.styles.block);
     this.editor?.render(this.nodes.wrapper)
 

@@ -1,19 +1,82 @@
 .editorjs-code2 .cm-content {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .editorjs-code2 .cm-focused {
-  outline: none !important;
+    outline: none !important;
 }
 
-.editorjs-code2  .cm-line {
-  padding: 2px 2px 2px 6px;
+.editorjs-code2 .cm-line {
+    padding: 2px 2px 2px 6px;
 }
 
 .editorjs-code2 .cm-content.readonly {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .editorjs-code2 .cm-gutter {
-  padding-top: 3px;
+    padding-top: 3px;
+}
+
+.editorjs-code2_picker-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    column-gap: 4px;
+
+    height: 24px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    margin-top: -2px;
+
+    visibility: hidden;
+}
+
+.editorjs-code2_copy-btn {
+    cursor: pointer;
+}
+
+/***** 下拉组件适配 ***/
+.editorjs-code2 .choices {
+    display: inline-block;
+    width: 90px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+.editorjs-code2 .editorjs-code2_theme-picker {
+    width: 140px;
+}
+
+.editorjs-code2 .choices__inner {
+    height: 24px;
+    min-height: unset;
+    padding: 0;
+    margin: 0;
+}
+
+.editorjs-code2 .choices[data-type*=select-one] .choices__inner {
+    padding: 0;
+    border: 0;
+    box-sizing: content-box;
+}
+
+.editorjs-code2 .choices__list {
+    box-sizing: border-box;
+}
+
+.editorjs-code2 .choices__item {
+    height: 24px;
+}
+
+.editorjs-code2 .choices__list--dropdown .choices__item,
+.editorjs-code2 .choices__list[aria-expanded] .choices__item {
+    padding: 4px;
+}
+
+.ce-block__content:hover .editorjs-code2_picker-wrapper ,
+.ce-block--focused .editorjs-code2_picker-wrapper {
+    visibility: visible;
 }

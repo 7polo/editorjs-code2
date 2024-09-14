@@ -1,12 +1,13 @@
 // @ts-ignore
 import debounce from "lodash.debounce";
-import {CodeEditorContext, CodeToolData} from "../types";
+import {CLASS_NAME, CodeEditorContext, CodeToolData} from "../types";
 
-import {EditorView, minimalSetup, } from "codemirror"
-import { EditorState, Compartment } from '@codemirror/state';
-import { lineNumbers, keymap } from '@codemirror/view';
+import {EditorView, minimalSetup,} from "codemirror"
+import {EditorState, Compartment} from '@codemirror/state';
+import {lineNumbers, keymap} from '@codemirror/view';
 import {indentWithTab} from "@codemirror/commands"
-import { foldGutter } from '@codemirror/language';
+import {foldGutter} from '@codemirror/language';
+import {IconCopy} from '@codexteam/icons';
 
 // language support
 import LANGUAGES_MAPPING from './languages'
@@ -14,11 +15,15 @@ import LANGUAGES_MAPPING from './languages'
 // theme support
 import * as themes from '@uiw/codemirror-themes-all';
 
+// @ts-ignore
+import Choices from "choices.js";
+import "./choices.css";
+
 const DEFAULT_THEME = 'okaidia'
 
 export class Editor {
 
-    private readonly data:CodeToolData;
+    private readonly data: CodeToolData;
 
     private context: CodeEditorContext;
 
@@ -42,8 +47,8 @@ export class Editor {
         this.languageComp = new Compartment();
     }
 
-    render(container:HTMLElement) {
-        container.addEventListener('paste', (e:Event)=> {
+    render(container: HTMLElement) {
+        container.addEventListener('paste', (e: Event) => {
             e.stopPropagation();
             e.preventDefault();
         });
@@ -79,7 +84,7 @@ export class Editor {
                 // @ts-ignore
                 this.languageComp.of(LANGUAGES_MAPPING[this.data.language || this.context.config.defaultLanguage || 'java']),
 
-                EditorView.updateListener.of((e)=> {
+                EditorView.updateListener.of((e) => {
                     if (e.docChanged) {
                         this.updateData({code: e.state.doc.toString()})
                     }
@@ -88,10 +93,79 @@ export class Editor {
             parent: container
         });
 
-        setTimeout(()=> this.setReadOnly(this.context.readOnly), 0)
+        if (!this.context.readOnly) {
+            this.renderedSelector()
+        }
+
+        setTimeout(() => this.setReadOnly(this.context.readOnly), 0)
     }
 
-    updateData(data:any) {
+    renderedSelector() {
+
+        const wrapper = document.createElement("div");
+        wrapper.dataset.mutationFree = 'true'
+        wrapper.classList.add(`${CLASS_NAME}_picker-wrapper`);
+
+        // copy button
+        let copyBtn = document.createElement("span");
+        copyBtn.innerHTML = IconCopy
+        copyBtn.classList.add(`${CLASS_NAME}_copy-btn`);
+        copyBtn.onclick = () => {
+            this.copyCode()
+        }
+
+        const languageEl = document.createElement("select");
+        languageEl.dataset.mutationFree = 'true'
+
+        const themeEl = document.createElement("select");
+        themeEl.dataset.mutationFree = 'true'
+        wrapper.append(languageEl, themeEl, copyBtn)
+        this.editor?.dom.appendChild(wrapper)
+
+        // theme
+        const themePicker = new Choices(themeEl, {
+            itemSelectText: '',
+            searchEnabled: false,
+            // @ts-ignore
+            classNames: {
+                containerOuter: ['choices', `${CLASS_NAME}_theme-picker`]
+            },
+            choices: this.getAllThemes().map(it => {
+                return {
+                    label: it,
+                    value: it,
+                    selected: it === this.data.theme
+                }
+            })
+        });
+        themePicker.passedElement.element.addEventListener('change', (e) => {
+            // @ts-ignore
+            this.setTheme(e.target?.value)
+        })
+
+        // language
+        const languagePicker = new Choices(languageEl, {
+            itemSelectText: '',
+            searchEnabled: false,
+            // @ts-ignore
+            classNames: {
+                containerOuter: ['choices', `${CLASS_NAME}_language-picker`]
+            },
+            choices: this.getAllLanguage().map(it => {
+                return {
+                    label: it,
+                    value: it,
+                    selected: it === this.data.theme
+                }
+            })
+        });
+        languagePicker.passedElement.element.addEventListener('change', (e) => {
+            // @ts-ignore
+            this.setLanguage(e.target?.value)
+        })
+    }
+
+    updateData(data: any) {
         Object.assign(this.data, data)
         this.context.block.dispatchChange();
     }
@@ -113,7 +187,10 @@ export class Editor {
         }
     }
 
-    setTheme(theme:string) {
+    setTheme(theme: string) {
+        if (theme === this.data.theme) {
+            return
+        }
         this.editor?.dispatch({
             // @ts-ignore
             effects: this.themeComp.reconfigure(themes[theme])
@@ -122,6 +199,9 @@ export class Editor {
     }
 
     setLanguage(language: string) {
+        if (language === this.data.language) {
+            return
+        }
         this.editor?.dispatch({
             // @ts-ignore
             effects: this.languageComp.reconfigure(LANGUAGES_MAPPING[language])
@@ -137,5 +217,13 @@ export class Editor {
 
     getAllLanguage() {
         return Object.keys(LANGUAGES_MAPPING);
+    }
+
+    copyCode() {
+        if (navigator.clipboard && this?.data?.code) {
+            navigator.clipboard.writeText(this?.data?.code).then(() => {
+                this.context.api.notifier.show({message: 'cope success'})
+            })
+        }
     }
 }

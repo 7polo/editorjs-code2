@@ -24,5 +24,9 @@ export default {
 
   plugins: [
     cssInjectedByJsPlugin(),
-  ]
+  ],
+  resolve: {
+    alias: [],
+    extensions: ['.ts', '.js', '.css'],
+  }
 }

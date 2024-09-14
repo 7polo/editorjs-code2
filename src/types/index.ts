@@ -1,5 +1,7 @@
 import {API, BlockAPI, BlockToolData} from '@editorjs/editorjs';
 
+export const CLASS_NAME = 'editorjs-code2'
+
 /**
  * CodeTool Tool's input and output data format
  */

@@ -5,11 +5,11 @@ Code Tool for Editor.js 2.0. power by codemirror.
 
 ## Feature
 + [x] line number ✌️
-+ [x] code folder
-+ [ ] theme selector (on-the-way )
-+ [ ] language selector (on-the-way)
-+ [ ] copy (on-the-way)
-+ [x] tab/shift+tab support
++ [x] code folder ✌️
++ [x] theme selector ✌️
++ [x] language selector ✌️
++ [x] copy ✌️
++ [x] tab/shift+tab support ✌️
 
 ## Usage
 
