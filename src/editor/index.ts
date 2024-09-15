@@ -120,6 +120,7 @@ export class Editor {
         const themeEl = document.createElement("select");
         themeEl.dataset.mutationFree = 'true'
         wrapper.append(languageEl, themeEl, copyBtn)
+        // this.editor?.dom.insertBefore(wrapper, this.editor?.dom.firstChild)
         this.editor?.dom.appendChild(wrapper)
 
         // theme

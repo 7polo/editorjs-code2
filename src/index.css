@@ -28,8 +28,10 @@
     padding-right: 2px;
     padding-bottom: 4px;
     margin-top: -2px;
-
+    box-sizing: content-box;
     visibility: hidden;
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 .editorjs-code2_copy-btn {
@@ -39,7 +41,7 @@
 /***** 下拉组件适配 ***/
 .editorjs-code2 .choices {
     display: inline-block;
-    width: 90px;
+    width: 100px;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
